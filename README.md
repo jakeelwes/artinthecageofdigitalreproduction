@@ -1,5 +1,7 @@
 Simple collection of mini-essays after the OpenAI Sora action.
+
 https://huggingface.co/spaces/PR-Puppets/PR-Puppet-Sora
+
 https://ground.news/article/openais-sora-appears-to-have-leaked_2e0af0
 
 
