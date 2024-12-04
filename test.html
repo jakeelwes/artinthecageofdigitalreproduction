@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpine.js and Font Awesome Test</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.6/dist/cdn.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .mobile-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-navbar.open {
+            transform: translateY(0);
+        }
+        .mobile-navbar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .mobile-navbar-toggle {
+            font-size: 24px;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body x-data="{ open: false }">
+    <button class="mobile-navbar-toggle" @click="open = !open">
+        <i :class="open ? 'fas fa-times' : 'fas fa-bars'"></i>
+    </button>
+    <nav class="mobile-navbar" :class="{ 'open': open }">
+        <ul>
+            <li><a href="#section1" @click="open = false">Section 1</a></li>
+            <li><a href="#section2" @click="open = false">Section 2</a></li>
+        </ul>
+    </nav>
+    <script>
+        // No extra JS is required as Alpine.js handles the state
+    </script>
+</body>
+</html>

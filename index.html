@@ -5,223 +5,212 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Art in the Cage of Digital Reproduction</title>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Cormorant:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/3.11.2/modernizr.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3" defer></script> <!-- Add Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.6/dist/cdn.min.js"></script>
     <style>
-        /* General Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+   /* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background: #fff;
-            color: #444;
-            line-height: 1.5;
-            display: flex;
-            justify-content: center;
-            padding: 0 20px 0 20px;
-        }
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: #fff;
+    color: #444;
+    line-height: 1.5;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+}
 
-        .container {
-            max-width: 960px;
-            width: 100%;
-            display: flex;
-            gap: 20px;
-        }
+.container {
+    max-width: 960px;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
 
-        /* Navbar Styles */
-        .navbar {
-            width: 200px;
-            background: #fff;
-            padding: 20px;
-            position: sticky;
-            top: 0;
-            height: max-content;
-        }
+/* Navbar Styles */
+.navbar {
+    width: 200px;
+    background: #fff;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    height: max-content;
+}
 
-        .navbar h2 {
-            font-family: 'Cormorant', serif;
-            font-size: 24px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
+.navbar h2 {
+    font-family: 'Cormorant', serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
 
-        .navbar a {
-            color: #888;
-            text-decoration: none;
-            text-align: right;
-            display: block;
-            padding: 10px;
-            margin-bottom: 10px;
-            transition: background 0.3s ease;
-        }
+.navbar a {
+    color: #888;
+    text-decoration: none;
+    text-align: right;
+    display: block;
+    padding: 10px;
+    margin-bottom: 10px;
+    transition: background 0.3s ease;
+}
 
-        .navbar a:hover {
-            /* background: #f4f4f4; */
-            color: #333;
+.navbar a:hover {
+    color: #333;
+}
 
-        }
+/* Mobile Navbar Styles */
+.mobile-navbar-toggle {
+    display: none; /* Hidden by default */
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+}
 
-        /* Mobile Navbar */
-        .mobile-navbar-toggle {
-            display: none;
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            z-index: 1000;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-        }
+.mobile-navbar-toggle i {
+    transition: all 0.3s ease;
+}
 
-        .menu-icon {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 20px;
-        }
+.mobile-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent */
+    padding: 20px;
+    z-index: 999;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+}
 
-        .menu-icon span {
-            display: block;
-            height: 3px;
-            background: #333;
-        }
+.mobile-navbar.open {
+    transform: translateY(0);
+}
 
-        .mobile-navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #fff;
-            padding: 20px;
-            z-index: 999;
-            transform: translateY(-100%);
-            transition: transform 0.3s ease-in-out;
-        }
+.mobile-navbar ul {
+    list-style-type: none;
+    padding: 0;
+}
 
-        .mobile-navbar.open {
-            transform: translateY(0);
-        }
+.mobile-navbar li {
+    margin-bottom: 15px;
+}
 
-        .mobile-navbar ul {
-            list-style-type: none;
-            padding: 0;
-        }
+.mobile-navbar a {
+    color: #333;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    transition: background 0.3s ease;
+}
 
-        .mobile-navbar li {
-            margin-bottom: 15px;
-        }
+.mobile-navbar a:hover {
+    background: #f4f4f4;
+}
 
-        .mobile-navbar a {
-            color: #333;
-            text-decoration: none;
-            padding: 10px;
-            display: block;
-            transition: background 0.3s ease;
-        }
+/* Content Styles */
+.content {
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+}
 
-        .mobile-navbar a:hover {
-            background: #f4f4f4;
-        }
+.title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
-        /* Content Styles */
-        .content {
-            flex: 1;
-            background: #fff;
-            padding: 20px;
-        }
+.title img {
+    width: 80px;
+    height: 80px;
+    margin-right: 15px;
+}
 
-        .title {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
+.title h1 {
+    font-family: 'Cormorant', serif;
+    font-size: 28px;
+}
 
-        .title img {
-            width: 80px;
-            height: 80px;
-            margin-right: 15px;
-        }
+.banner {
+    width: 100%;
+    height: 200px;
+    background: url('https://via.placeholder.com/1920x200') no-repeat center center/cover;
+    margin: 30px 0;
+}
 
-        .title h1 {
-            font-family: 'Cormorant', serif;
-            font-size: 28px;
-        }
+article {
+    margin-bottom: 30px;
+    background: #fff;
+    text-align: left;
+}
 
-        .banner {
-            width: 100%;
-            height: 200px;
-            background: url('https://via.placeholder.com/1920x200') no-repeat center center/cover;
-            margin-top: 30px;
-            margin-bottom: 30px;
-        }
+article h2 {
+    margin-bottom: 10px;
+}
 
-        article {
-            margin-bottom: 30px;
-            background: #fff;
-            text-align: left;
-        }
+.markdown {
+    background: #fff;
+    white-space: pre-wrap;
+    font-family: 'DM Sans', sans-serif;
+}
 
-        article h2 {
-            margin-bottom: 10px;
-        }
+hr {
+    border: 0;
+    height: 1px;
+    background: #ddd;
+    margin: 30px 0;
+}
 
-        .markdown {
-            background: #fff;
-            white-space: pre-wrap;
-            font-family: 'DM Sans', sans-serif;
-        }
+/* Responsive Styles */
+@media (max-width: 768px) {
+    /* Hide desktop navbar */
+    .navbar {
+        display: none;
+    }
 
-        hr {
-            border: 0;
-            height: 1px;
-            background: #ddd;
-            margin: 30px 0;
-        }
+    /* Show mobile toggle in mobile view */
+    .mobile-navbar-toggle {
+        display: block;
+    }
 
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .navbar {
-                display: none;
-            }
-
-            .mobile-navbar-toggle {
-                display: block;
-            }
-
-            .container {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
+    /* Adjust layout for mobile view */
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
     </style>
 </head>
-<body>
-    <button class="mobile-navbar-toggle" onclick="toggleMobileNavbar()">
-        <div class="menu-icon">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+<body x-data="{ open: false }">
+    <button class="mobile-navbar-toggle" @click="open = !open">
+        <i :class="open ? 'fas fa-times' : 'fas fa-bars'"></i>
     </button>
 
-    <nav class="mobile-navbar" x-data="{ open: false }" :class="{ 'open': open }">
+    <nav class="mobile-navbar" :class="{ 'open': open }">
         <ul>
-            <li><a href="#article1">Dolor Sit</a></li>
-            <li><a href="#article2">Amet Consectetur</a></li>
-            <li><a href="#article3">Adipiscing Elit</a></li>
-            <li><a href="#article4">Cras Luctus</a></li>
-            <li><a href="#article5">Magna Eget</a></li>
-            <li><a href="#article6">Laoreet Suscipit</a></li>
-            <li><a href="#article7">Purus Scelerisque</a></li>
-            <li><a href="#article8">Nulla Facilisi</a></li>
-            <li><a href="#article9">Phasellus Sapien</a></li>
-            <li><a href="#article10">Magna Mollis</a></li>
+            <li><a href="#article1" @click="open = false">Dolor Sit</a></li>
+            <li><a href="#article2" @click="open = false">Amet Consectetur</a></li>
+            <li><a href="#article3" @click="open = false">Adipiscing Elit</a></li>
+            <li><a href="#article4" @click="open = false">Cras Luctus</a></li>
+            <li><a href="#article5" @click="open = false">Magna Eget</a></li>
+            <li><a href="#article6" @click="open = false">Laoreet Suscipit</a></li>
+            <li><a href="#article7" @click="open = false">Purus Scelerisque</a></li>
+            <li><a href="#article8" @click="open = false">Nulla Facilisi</a></li>
+            <li><a href="#article9" @click="open = false">Phasellus Sapien</a></li>
+            <li><a href="#article10" @click="open = false">Magna Mollis</a></li>
         </ul>
     </nav>
 
@@ -243,6 +232,7 @@
             <div class="title">
                 <img src="whitebox.png" alt="placeholder">
                 <h1>Art in the Cage of Digital Reproduction</h1>
+
             </div>
             <div class="markdown">
 On 26th November 2024, a group of artists and hacktivists took action to re-open OpenAI’s technology to the public. They provided indirect access to their video generation model, Sora, via an open source front end <a href="https://huggingface.co/spaces/PR-Puppets/PR-Puppet-Sora">on HuggingFace</a>. Alongside this, we released a statement to denormalise the exploitation of artists for research and development, training data and public relations by “corporate AI overlords” and calling for artists thinking beyond the proprietary and the prompt box. The ‘Sora leak’ and accompanying open letter quickly went viral and got shut down in 3 hours with international press coverage.
@@ -308,11 +298,21 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus magna eget 
     </div>
 </div>
 
-<script>
-    function toggleMobileNavbar() {
-        const navbar = document.querySelector('.mobile-navbar');
-        navbar.classList.toggle('open');
-    }
-</script>
+<!-- <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const navbarToggle = document.querySelector(".mobile-navbar-toggle");
+        const navbar = document.querySelector(".mobile-navbar");
+
+        navbarToggle.addEventListener("click", () => {
+            navbar.classList.toggle("open");
+        });
+
+        navbar.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                navbar.classList.remove("open");
+            });
+        });
+    });
+</script> -->
 </body>
 </html>
