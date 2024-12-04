@@ -4,59 +4,315 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Art in the Cage of Digital Reproduction</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Cormorant:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/3.11.2/modernizr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3" defer></script> <!-- Add Alpine.js -->
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* General Styles */
+        * {
             margin: 0;
-            padding: 20em;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background: radial-gradient(circle, #f8f8f8, #abbdc7);
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #fff;
             color: #333;
+            display: flex;
+            justify-content: center;
+            padding: 0 20px 0 20px;
         }
 
-        h1 {
-            font-family: "Playfair Display", serif;
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
+        .container {
+            max-width: 960px;
+            width: 100%;
+            display: flex;
+            gap: 20px;
         }
 
-        p {
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
+        /* Navbar Styles */
+        .navbar {
+            width: 200px;
+            background: #fff;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            height: max-content;
+        }
+
+        .navbar h2 {
+            font-family: 'Cormorant', serif;
+            font-size: 24px;
+            margin-bottom: 20px;
             text-align: center;
-            line-height: 1.6;
         }
 
-        a {
-            display: block;
-            font-size: 1rem;
-            color: #007BFF;
+        .navbar a {
+            color: #333;
             text-decoration: none;
-            margin: 0.5rem 0;
+            text-align: right;
+            display: block;
+            padding: 10px;
+            margin-bottom: 10px;
+            transition: background 0.3s ease;
         }
 
-        a:hover {
-            text-decoration: underline;
+        .navbar a:hover {
+            background: #f4f4f4;
         }
 
-        .links {
+        /* Mobile Navbar */
+        .mobile-navbar-toggle {
+            display: none;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .menu-icon {
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+        }
+
+        .menu-icon span {
+            display: block;
+            height: 3px;
+            background: #333;
+        }
+
+        .mobile-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            padding: 20px;
+            z-index: 999;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-navbar.open {
+            transform: translateY(0);
+        }
+
+        .mobile-navbar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .mobile-navbar li {
+            margin-bottom: 15px;
+        }
+
+        .mobile-navbar a {
+            color: #333;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+            transition: background 0.3s ease;
+        }
+
+        .mobile-navbar a:hover {
+            background: #f4f4f4;
+        }
+
+        /* Content Styles */
+        .content {
+            flex: 1;
+            background: #fff;
+            padding: 20px;
+        }
+
+        .title {
+            display: flex;
             align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .title img {
+            width: 50px;
+            height: 50px;
+            background: #ccc;
+            margin-right: 15px;
+        }
+
+        .title h1 {
+            font-family: 'Cormorant', serif;
+            font-size: 28px;
+        }
+
+        .banner {
+            width: 100%;
+            height: 200px;
+            background: url('https://via.placeholder.com/1920x200') no-repeat center center/cover;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        article {
+            margin-bottom: 30px;
+            background: #fff;
+            text-align: left;
+        }
+
+        article h2 {
+            margin-bottom: 10px;
+        }
+
+        .markdown {
+            background: #fff;
+            white-space: pre-wrap;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ddd;
+            margin: 30px 0;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                display: none;
+            }
+
+            .mobile-navbar-toggle {
+                display: block;
+            }
+
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Art in the Cage of Digital Reproduction</h1>
-    <p>A collection of mini-essays after the OpenAI Sora action.</p>
-    <div class="links">
-        <a href="https://huggingface.co/spaces/PR-Puppets/PR-Puppet-Sora" target="_blank">View the statement on the now shut down "PR-Puppet-Sora" on Hugging Face</a>
-        <a href="https://ground.news/article/openais-sora-appears-to-have-leaked_2e0af0" target="_blank">Read about the OpenAI Sora Leak on Ground News</a>
+    <button class="mobile-navbar-toggle" onclick="toggleMobileNavbar()">
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </button>
+
+    <nav class="mobile-navbar" x-data="{ open: false }" :class="{ 'open': open }">
+        <ul>
+            <li><a href="#article1">Dolor Sit</a></li>
+            <li><a href="#article2">Amet Consectetur</a></li>
+            <li><a href="#article3">Adipiscing Elit</a></li>
+            <li><a href="#article4">Cras Luctus</a></li>
+            <li><a href="#article5">Magna Eget</a></li>
+            <li><a href="#article6">Laoreet Suscipit</a></li>
+            <li><a href="#article7">Purus Scelerisque</a></li>
+            <li><a href="#article8">Nulla Facilisi</a></li>
+            <li><a href="#article9">Phasellus Sapien</a></li>
+            <li><a href="#article10">Magna Mollis</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <nav class="navbar">
+            <a href="#article1">Dolor Sit</a>
+            <a href="#article2">Amet Consectetur</a>
+            <a href="#article3">Adipiscing Elit</a>
+            <a href="#article4">Cras Luctus</a>
+            <a href="#article5">Magna Eget</a>
+            <a href="#article6">Laoreet Suscipit</a>
+            <a href="#article7">Purus Scelerisque</a>
+            <a href="#article8">Nulla Facilisi</a>
+            <a href="#article9">Phasellus Sapien</a>
+            <a href="#article10">Magna Mollis</a>
+        </nav>
+
+        <div class="content">
+            <div class="title">
+                <img src="https://via.placeholder.com/50" alt="Grey placeholder">
+                <h1>Art in the Cage of Digital Reproduction</h1>
+            </div>
+            <div class="markdown">
+On 26th November 2024, a group of artists and hacktivists took action to re-open OpenAI’s technology to the public. They provided indirect access to their video generation model, Sora, via an open source front end on HuggingFace. Alongside this, we released a statement to denormalise the exploitation of artists for research and development, training data and public relations by “corporate AI overlords” and calling for artists thinking beyond the proprietary and the prompt box. The ‘Sora leak’ and accompanying open letter quickly went viral and got shut down in 3 hours with international press coverage.
+<a href="https://huggingface.co/spaces/PR-Puppets/PR-Puppet-Sora">https://huggingface.co/spaces/PR-Puppets/PR-Puppet-Sora</a>
+            </div>
+
+
+
+
+        <div class="banner"></div>
+        <article id="article1">
+            <h2>Dolor Sit</h2>
+            <div class="markdown">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus magna eget elit laoreet, eu suscipit purus scelerisque. Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
+            </div>
+        </article>
+        <hr>
+        <article id="article2">
+            <h2>Amet Consectetur</h2>
+            <div class="markdown">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus magna eget elit laoreet, eu suscipit purus scelerisque. Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
+            </div>
+        </article>
+        <hr>
+        <hr>
+        <article id="article3">
+            <h2>Adipiscing Elit</h2>
+            <div class="markdown">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus magna eget elit laoreet, eu suscipit purus scelerisque. Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
+            </div>
+        </article>
+        <hr>
+        <hr>
+        <article id="article4">
+            <h2>Cras Luctus</h2>
+            <div class="markdown">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus magna eget elit laoreet, eu suscipit purus scelerisque. Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
+            </div>
+        </article>
+        <hr>
+        <hr>
+        <article id="article5">
+            <h2>Magna Eget</h2>
+            <div class="markdown">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus magna eget elit laoreet, eu suscipit purus scelerisque. Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
+            </div>
+        </article>
+        <hr>
+        <hr>
+        <article id="article6">
+            <h2>Article 6</h2>
+            <div class="markdown">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus magna eget elit laoreet, eu suscipit purus scelerisque. Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
+            </div>
+        </article>
+        <hr>
+        <hr>
+        <article id="article7">
+            <h2>Article 7</h2>
+            <div class="markdown">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus magna eget elit laoreet, eu suscipit purus scelerisque. Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
+            </div>
+        </article>
+        <hr>
     </div>
+</div>
+
+<script>
+    function toggleMobileNavbar() {
+        const navbar = document.querySelector('.mobile-navbar');
+        navbar.classList.toggle('open');
+    }
+</script>
 </body>
 </html>
