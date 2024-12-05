@@ -388,17 +388,14 @@ This collection of articles is licensed under a [Creative Commons Attribution 4.
     
                     const articleData = await fileResponse.json();
     
-                    // Check for externalUrl and use it if available
-                    const linkHref = articleData.externalUrl ? articleData.externalUrl : `#${articleData.id}`;
-                    const targetAttr = articleData.externalUrl ? `target="_blank"` : '';
-    
                     // Create Navbar Links
+                    const linkHref = `#${articleData.id}`; // Always use #id for navigation
                     const linkDesktop = document.createElement('li');
-                    linkDesktop.innerHTML = `<a href="${linkHref}" ${targetAttr}>${articleData.name}</a>`;
+                    linkDesktop.innerHTML = `<a href="${linkHref}" data-external-url="${articleData.externalUrl || ''}">${articleData.name}</a>`;
                     navbarListDesktop.appendChild(linkDesktop);
     
                     const linkMobile = document.createElement('li');
-                    linkMobile.innerHTML = `<a href="${linkHref}" ${targetAttr} @click="open = false">${articleData.name}</a>`;
+                    linkMobile.innerHTML = `<a href="${linkHref}" data-external-url="${articleData.externalUrl || ''}" @click="open = false">${articleData.name}</a>`;
                     navbarListMobile.appendChild(linkMobile);
     
                     // Parse Markdown to HTML
@@ -425,6 +422,18 @@ This collection of articles is licensed under a [Creative Commons Attribution 4.
                 const acknowledgementsMobile = document.createElement('li');
                 acknowledgementsMobile.innerHTML = `<a href="#acknowledgements" @click="open = false">Acknowledgements</a>`;
                 navbarListMobile.appendChild(acknowledgementsMobile);
+    
+                // Attach event listeners to handle external URL navigation
+                document.querySelectorAll('a[data-external-url]').forEach(link => {
+                    const externalUrl = link.getAttribute('data-external-url');
+                    if (externalUrl) {
+                        link.addEventListener('click', (event) => {
+                            event.preventDefault();
+                            window.open(externalUrl, '_blank');
+                        });
+                    }
+                });
+    
             } catch (error) {
                 console.error('Error loading articles:', error);
             }
