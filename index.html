@@ -8,8 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/3.11.2/modernizr.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.6/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>    
     <style>
    /* General Styles */
+
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -33,6 +39,16 @@ body {
     gap: 20px;
 }
 
+/* General link styles */
+a {
+    color: rgb(157, 89, 163); 
+    text-decoration: none; 
+}
+
+a:hover {
+    color: rgb(65, 0, 71); 
+
+}
 /* Navbar Styles */
 .navbar {
     width: 200px;
@@ -58,6 +74,10 @@ body {
     padding: 10px;
     margin-bottom: 10px;
     transition: background 0.3s ease;
+}
+
+.navbar li {
+    list-style-type: none;
 }
 
 .navbar a:hover {
@@ -130,7 +150,7 @@ body {
 .title {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .title img {
@@ -144,11 +164,17 @@ body {
     font-size: 28px;
 }
 
+
 .banner {
     width: 100%;
-    height: 200px;
-    background: url('https://via.placeholder.com/1920x200') no-repeat center center/cover;
-    margin: 30px 0;
+    height: auto;
+}
+
+.image-caption {
+    font-size: 0.8em;
+    color: #888;
+    margin-bottom: 10px;
+    text-align: right;
 }
 
 article {
@@ -158,7 +184,15 @@ article {
 }
 
 article h2 {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+article h3 {
+    font-weight: normal;
+    font-size: 1em;
+    font-style: italic;
+    color: #555;
+    margin-bottom: 20px;
 }
 
 .markdown {
@@ -191,128 +225,164 @@ hr {
         flex-direction: column;
         align-items: center;
     }
+
+
+    .banner {
+        width: 100vw; /* Set width to 100% of the viewport */
+        margin-left: calc(-1 * (100vw - 100%) / 2); /* Compensate for parent's centered content */
+        height: auto; /* Maintain aspect ratio */
+        display: block; /* Ensure it behaves like a block-level element */
+    }
 }
     </style>
 </head>
-<body x-data="{ open: false }">
+<body x-data="{ open: false }" id="about">
     <button class="mobile-navbar-toggle" @click="open = !open">
         <i :class="open ? 'fas fa-times' : 'fas fa-bars'"></i>
     </button>
 
     <nav class="mobile-navbar" :class="{ 'open': open }">
-        <ul>
-            <li><a href="#article1" @click="open = false">Dolor Sit</a></li>
-            <li><a href="#article2" @click="open = false">Amet Consectetur</a></li>
-            <li><a href="#article3" @click="open = false">Adipiscing Elit</a></li>
-            <li><a href="#article4" @click="open = false">Cras Luctus</a></li>
-            <li><a href="#article5" @click="open = false">Magna Eget</a></li>
-            <li><a href="#article6" @click="open = false">Laoreet Suscipit</a></li>
-            <li><a href="#article7" @click="open = false">Purus Scelerisque</a></li>
-            <li><a href="#article8" @click="open = false">Nulla Facilisi</a></li>
-            <li><a href="#article9" @click="open = false">Phasellus Sapien</a></li>
-            <li><a href="#article10" @click="open = false">Magna Mollis</a></li>
+        <ul id="mobile-navbar-list">
+            <li><a href="#about" @click="open = false">About</a></li>
+            <!-- Dynamic navbar items will be appended here -->
+
         </ul>
     </nav>
 
     <div class="container">
         <nav class="navbar">
-            <a href="#article1">Dolor Sit</a>
-            <a href="#article2">Amet Consectetur</a>
-            <a href="#article3">Adipiscing Elit</a>
-            <a href="#article4">Cras Luctus</a>
-            <a href="#article5">Magna Eget</a>
-            <a href="#article6">Laoreet Suscipit</a>
-            <a href="#article7">Purus Scelerisque</a>
-            <a href="#article8">Nulla Facilisi</a>
-            <a href="#article9">Phasellus Sapien</a>
-            <a href="#article10">Magna Mollis</a>
+            <ul id="desktop-navbar-list">
+                <a href="#about">About</a>
+                <!-- Dynamic navbar items will be appended here -->
+            </ul>
         </nav>
 
         <div class="content">
             <div class="title">
                 <img src="whitebox.png" alt="placeholder">
-                <h1>Art in the Cage of Digital Reproduction</h1>
-
-            </div>
-            <div class="markdown">
-On 26th November 2024, a group of artists and hacktivists took action to re-open OpenAI’s technology to the public. They provided indirect access to their video generation model, Sora, via an open source front end <a href="https://huggingface.co/spaces/PR-Puppets/PR-Puppet-Sora">on HuggingFace</a>. Alongside this, we released a statement to denormalise the exploitation of artists for research and development, training data and public relations by “corporate AI overlords” and calling for artists thinking beyond the proprietary and the prompt box. The ‘Sora leak’ and accompanying open letter quickly went viral and got shut down in 3 hours with international press coverage.
+                <h1 id="page-title">Art in the Cage of Digital Reproduction</h1>
             </div>
 
+            <div id="about-text" class="markdown">
+On 26th November 2024, a group of artists and hacktivists took action to re-open OpenAI's technology to the public. They provided indirect access to their video generation model, Sora, via an open source front end [on HuggingFace](https://huggingface.co/spaces/PR-Puppets/PR-Puppet-Sora). 
 
+Alongside this, we released a statement to denormalise the exploitation of artists for research and development, training data and public relations by "corporate AI overlords" and calling for artists thinking beyond the proprietary and the prompt box. The 'Sora leak' and accompanying open letter quickly went viral and got shut down in 3 hours with international press coverage.
+            </div>
 
+            <div id="articles">
+                <!-- Dynamic articles will be appended here -->
+            </div>
 
-        <div class="banner"></div>
-        <article id="article1">
-            <h2>Dolor Sit</h2>
-            <div class="markdown">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus magna eget elit laoreet, eu suscipit purus scelerisque. Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
+            <div id="acknowledgements" class="markdown">
 
-Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
-            </div>
-        </article>
-        <hr>
-        <article id="article2">
-            <h2>Amet Consectetur</h2>
-            <div class="markdown">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus magna eget elit laoreet, eu suscipit purus scelerisque. Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
-            </div>
-        </article>
-        <hr>
-        <article id="article3">
-            <h2>Adipiscing Elit</h2>
-            <div class="markdown">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus magna eget elit laoreet, eu suscipit purus scelerisque. Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
+# Acknowledgements
 
-Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
-            </div>
-        </article>
-        <hr>
-        <article id="article4">
-            <h2>Cras Luctus</h2>
-            <div class="markdown">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus magna eget elit laoreet, eu suscipit purus scelerisque. Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
-            </div>
-        </article>
-        <hr>
-        <article id="article5">
-            <h2>Magna Eget</h2>
-            <div class="markdown">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus magna eget elit laoreet, eu suscipit purus scelerisque. Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
-            </div>
-        </article>
-        <hr>
-        <article id="article6">
-            <h2>Article 6</h2>
-            <div class="markdown">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus magna eget elit laoreet, eu suscipit purus scelerisque. Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
-            </div>
-        </article>
-        <hr>
-        <article id="article7">
-            <h2>Article 7</h2>
-            <div class="markdown">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus magna eget elit laoreet, eu suscipit purus scelerisque. Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
-            </div>
-        </article>
-        <hr>
+The original open letter was created collectively, representing the voices and contributions of everyone who participated in its development.
+
+Facilitated by Jake Elwes and an anonymous hacktivist, Nov 2024.  
+Special thanks to (/ co-edited by) Crosslucid, Operator, Dimiri De Jonghe, Maribeth Rauh, Joel Simon, Memo Akten, Katie Peyton Hofstadter, Ianis Bardakos, Paul Mouginot, Cheng Xu, anon, anon, and anon.
+
+Special thanks to those who drafted, those who debated, and everyone who showed up.
+
+If you want to get in touch to add a contribution or for any inquiries, please email [artinthecage@gmail.com](mailto:artinthecage@gmail.com).
+
+---
+
+This collection of articles is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). Please attribute authorship.
+
+[![CC BY 4.0 License](https://licensebuttons.net/l/by/4.0/88x31.png)](https://creativecommons.org/licenses/by/4.0/)
+                
+                </div>
+
+        </div>
     </div>
-</div>
 
-<!-- <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const navbarToggle = document.querySelector(".mobile-navbar-toggle");
-        const navbar = document.querySelector(".mobile-navbar");
-
-        navbarToggle.addEventListener("click", () => {
-            navbar.classList.toggle("open");
+    <script>
+        const jsonFolder = './articles'; 
+    
+        async function loadArticles() {
+            try {
+                const files = ['test-anon.json', 'test-jake.json', 'test-maribeth.json', 'test-anon2.json'];
+    
+                const navbarListDesktop = document.getElementById('desktop-navbar-list');
+                const navbarListMobile = document.getElementById('mobile-navbar-list');
+                const articlesContainer = document.getElementById('articles');
+    
+                for (const file of files) {
+                    const fileResponse = await fetch(`${jsonFolder}/${file}`);
+                    
+                    // Check if the file was fetched successfully
+                    if (!fileResponse.ok) {
+                        console.error(`Failed to load ${file}:`, fileResponse.statusText);
+                        continue;
+                    }
+    
+                    const articleData = await fileResponse.json();
+    
+                    // Create Navbar Links
+                    const linkDesktop = document.createElement('li');
+                    linkDesktop.innerHTML = `<a href="#${articleData.id}">${articleData.name}</a>`;
+                    navbarListDesktop.appendChild(linkDesktop);
+    
+                    const linkMobile = document.createElement('li');
+                    linkMobile.innerHTML = `<a href="#${articleData.id}" @click="open = false">${articleData.name}</a>`;
+                    navbarListMobile.appendChild(linkMobile);
+    
+                    // Parse Markdown to HTML
+                    const markdownContent = marked.parse(articleData.content);    
+                    // Create Article Content
+                    const article = document.createElement('article');
+                    article.id = articleData.id;
+                    article.innerHTML = `
+                        <img class="banner" src="${articleData.image.path}"></img>
+                        <div class="image-caption">${articleData.image.caption}</div>
+                        <h2>${articleData.name}</h2>
+                        <h3>${articleData.occupation}</h3>
+                        <div class="markdown">${markdownContent}</div>
+                        <hr>
+                    `;
+                    articlesContainer.appendChild(article);
+                }
+    
+                // Add "Acknowledgements" link to the navbar after JSON-based items
+                const acknowledgementsDesktop = document.createElement('li');
+                acknowledgementsDesktop.innerHTML = `<a href="#acknowledgements">Acknowledgements</a>`;
+                navbarListDesktop.appendChild(acknowledgementsDesktop);
+    
+                const acknowledgementsMobile = document.createElement('li');
+                acknowledgementsMobile.innerHTML = `<a href="#acknowledgements" @click="open = false">Acknowledgements</a>`;
+                navbarListMobile.appendChild(acknowledgementsMobile);
+            } catch (error) {
+                console.error('Error loading articles:', error);
+            }
+        }
+    
+        // New code to process Markdown sections
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load dynamic articles
+            loadArticles();
+    
+            // Function to process a specific Markdown div
+            function processMarkdownDiv(divId) {
+                const div = document.getElementById(divId);
+                if (div) {
+                    // Extract raw Markdown content
+                    const rawMarkdown = div.textContent;
+    
+                    // Convert Markdown to HTML using marked
+                    const parsedHTML = marked.parse(rawMarkdown);
+    
+                    // Replace the content of the div with parsed HTML
+                    div.innerHTML = parsedHTML;
+                }
+            }
+    
+            // Process "Acknowledgements" section
+            processMarkdownDiv('acknowledgements');
+    
+            // Process "About Text" section
+            processMarkdownDiv('about-text');
         });
-
-        navbar.querySelectorAll("a").forEach(link => {
-            link.addEventListener("click", () => {
-                navbar.classList.remove("open");
-            });
-        });
-    });
-</script> -->
+    </script>
 </body>
 </html>

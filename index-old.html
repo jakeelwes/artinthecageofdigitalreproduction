@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art in the Cage of Digital Reproduction</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Cormorant:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/3.11.2/modernizr.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.6/dist/cdn.min.js"></script>
+    <style>
+   /* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: #fff;
+    color: #444;
+    line-height: 1.5;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+.container {
+    max-width: 960px;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+
+/* Navbar Styles */
+.navbar {
+    width: 200px;
+    background: #fff;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    height: max-content;
+}
+
+.navbar h2 {
+    font-family: 'Cormorant', serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.navbar a {
+    color: #888;
+    text-decoration: none;
+    text-align: right;
+    display: block;
+    padding: 10px;
+    margin-bottom: 10px;
+    transition: background 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #333;
+}
+
+/* Mobile Navbar Styles */
+.mobile-navbar-toggle {
+    display: none; /* Hidden by default */
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+}
+
+.mobile-navbar-toggle i {
+    transition: all 0.3s ease;
+}
+
+.mobile-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent */
+    padding: 20px;
+    z-index: 999;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.mobile-navbar.open {
+    transform: translateY(0);
+}
+
+.mobile-navbar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.mobile-navbar li {
+    margin-bottom: 15px;
+}
+
+.mobile-navbar a {
+    color: #333;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    transition: background 0.3s ease;
+}
+
+.mobile-navbar a:hover {
+    background: #f4f4f4;
+}
+
+/* Content Styles */
+.content {
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.title img {
+    width: 80px;
+    height: 80px;
+    margin-right: 15px;
+}
+
+.title h1 {
+    font-family: 'Cormorant', serif;
+    font-size: 28px;
+}
+
+.banner {
+    width: 100%;
+    height: 200px;
+    background: url('https://via.placeholder.com/1920x200') no-repeat center center/cover;
+    margin: 30px 0;
+}
+
+article {
+    margin-bottom: 30px;
+    background: #fff;
+    text-align: left;
+}
+
+article h2 {
+    margin-bottom: 10px;
+}
+
+.markdown {
+    background: #fff;
+    white-space: pre-wrap;
+    font-family: 'DM Sans', sans-serif;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #ddd;
+    margin: 30px 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    /* Hide desktop navbar */
+    .navbar {
+        display: none;
+    }
+
+    /* Show mobile toggle in mobile view */
+    .mobile-navbar-toggle {
+        display: block;
+    }
+
+    /* Adjust layout for mobile view */
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+    </style>
+</head>
+<body x-data="{ open: false }">
+    <button class="mobile-navbar-toggle" @click="open = !open">
+        <i :class="open ? 'fas fa-times' : 'fas fa-bars'"></i>
+    </button>
+
+    <nav class="mobile-navbar" :class="{ 'open': open }">
+        <ul>
+            <li><a href="#article1" @click="open = false">Dolor Sit</a></li>
+            <li><a href="#article2" @click="open = false">Amet Consectetur</a></li>
+            <li><a href="#article3" @click="open = false">Adipiscing Elit</a></li>
+            <li><a href="#article4" @click="open = false">Cras Luctus</a></li>
+            <li><a href="#article5" @click="open = false">Magna Eget</a></li>
+            <li><a href="#article6" @click="open = false">Laoreet Suscipit</a></li>
+            <li><a href="#article7" @click="open = false">Purus Scelerisque</a></li>
+            <li><a href="#article8" @click="open = false">Nulla Facilisi</a></li>
+            <li><a href="#article9" @click="open = false">Phasellus Sapien</a></li>
+            <li><a href="#article10" @click="open = false">Magna Mollis</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <nav class="navbar">
+            <a href="#article1">Dolor Sit</a>
+            <a href="#article2">Amet Consectetur</a>
+            <a href="#article3">Adipiscing Elit</a>
+            <a href="#article4">Cras Luctus</a>
+            <a href="#article5">Magna Eget</a>
+            <a href="#article6">Laoreet Suscipit</a>
+            <a href="#article7">Purus Scelerisque</a>
+            <a href="#article8">Nulla Facilisi</a>
+            <a href="#article9">Phasellus Sapien</a>
+            <a href="#article10">Magna Mollis</a>
+        </nav>
+
+        <div class="content">
+            <div class="title">
+                <img src="whitebox.png" alt="placeholder">
+                <h1>Art in the Cage of Digital Reproduction</h1>
+
+            </div>
+            <div class="markdown">
+On 26th November 2024, a group of artists and hacktivists took action to re-open OpenAI’s technology to the public. They provided indirect access to their video generation model, Sora, via an open source front end <a href="https://huggingface.co/spaces/PR-Puppets/PR-Puppet-Sora">on HuggingFace</a>. Alongside this, we released a statement to denormalise the exploitation of artists for research and development, training data and public relations by “corporate AI overlords” and calling for artists thinking beyond the proprietary and the prompt box. The ‘Sora leak’ and accompanying open letter quickly went viral and got shut down in 3 hours with international press coverage.
+            </div>
+
+
+
+
+        <div class="banner"></div>
+        <article id="article1">
+            <h2>Dolor Sit</h2>
+            <div class="markdown">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus magna eget elit laoreet, eu suscipit purus scelerisque. Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
+
+Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
+            </div>
+        </article>
+        <hr>
+        <article id="article2">
+            <h2>Amet Consectetur</h2>
+            <div class="markdown">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus magna eget elit laoreet, eu suscipit purus scelerisque. Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
+            </div>
+        </article>
+        <hr>
+        <article id="article3">
+            <h2>Adipiscing Elit</h2>
+            <div class="markdown">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus magna eget elit laoreet, eu suscipit purus scelerisque. Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
+
+Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
+            </div>
+        </article>
+        <hr>
+        <article id="article4">
+            <h2>Cras Luctus</h2>
+            <div class="markdown">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus magna eget elit laoreet, eu suscipit purus scelerisque. Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
+            </div>
+        </article>
+        <hr>
+        <article id="article5">
+            <h2>Magna Eget</h2>
+            <div class="markdown">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus magna eget elit laoreet, eu suscipit purus scelerisque. Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
+            </div>
+        </article>
+        <hr>
+        <article id="article6">
+            <h2>Article 6</h2>
+            <div class="markdown">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus magna eget elit laoreet, eu suscipit purus scelerisque. Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
+            </div>
+        </article>
+        <hr>
+        <article id="article7">
+            <h2>Article 7</h2>
+            <div class="markdown">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus magna eget elit laoreet, eu suscipit purus scelerisque. Nulla facilisi. Phasellus at sapien ut magna mollis euismod. Sed varius tortor at est scelerisque, vel condimentum magna interdum. Suspendisse eget volutpat odio, quis mattis eros. Nam eget ultricies quam. Praesent pellentesque metus a orci viverra, nec vehicula lacus tempus.
+            </div>
+        </article>
+        <hr>
+    </div>
+</div>
+
+<!-- <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const navbarToggle = document.querySelector(".mobile-navbar-toggle");
+        const navbar = document.querySelector(".mobile-navbar");
+
+        navbarToggle.addEventListener("click", () => {
+            navbar.classList.toggle("open");
+        });
+
+        navbar.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                navbar.classList.remove("open");
+            });
+        });
+    });
+</script> -->
+</body>
+</html>
