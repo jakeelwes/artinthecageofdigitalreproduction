@@ -362,17 +362,16 @@ This collection of articles is licensed under a [Creative Commons Attribution 4.
 
     <script>
         const jsonFolder = './articles'; 
-    
+        
         async function loadArticles() {
             try {
                 const files = ['test-anon.json', 'test-jake.json', 'test-maribeth.json', 'test-anon2.json'];
-
+    
                 // Shuffle the files array
                 for (let i = files.length - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
                     [files[i], files[j]] = [files[j], files[i]];
                 }
-
     
                 const navbarListDesktop = document.getElementById('desktop-navbar-list');
                 const navbarListMobile = document.getElementById('mobile-navbar-list');
@@ -389,13 +388,17 @@ This collection of articles is licensed under a [Creative Commons Attribution 4.
     
                     const articleData = await fileResponse.json();
     
+                    // Check for externalUrl and use it if available
+                    const linkHref = articleData.externalUrl ? articleData.externalUrl : `#${articleData.id}`;
+                    const targetAttr = articleData.externalUrl ? `target="_blank"` : '';
+    
                     // Create Navbar Links
                     const linkDesktop = document.createElement('li');
-                    linkDesktop.innerHTML = `<a href="#${articleData.id}">${articleData.name}</a>`;
+                    linkDesktop.innerHTML = `<a href="${linkHref}" ${targetAttr}>${articleData.name}</a>`;
                     navbarListDesktop.appendChild(linkDesktop);
     
                     const linkMobile = document.createElement('li');
-                    linkMobile.innerHTML = `<a href="#${articleData.id}" @click="open = false">${articleData.name}</a>`;
+                    linkMobile.innerHTML = `<a href="${linkHref}" ${targetAttr} @click="open = false">${articleData.name}</a>`;
                     navbarListMobile.appendChild(linkMobile);
     
                     // Parse Markdown to HTML
