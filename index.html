@@ -32,6 +32,21 @@ body {
     padding: 0 20px;
 }
 
+pre {
+    max-width: 100%; /* Ensure it does not exceed the viewport width */
+    width: auto; /* Allow it to adjust naturally */
+    overflow-x: auto; /* Enable horizontal scrolling if content overflows */
+    background: #f4f4f4; /* Light grey background for contrast */
+    margin: 20px 0; /* Add vertical spacing */
+    padding: 15px; /* Inner padding for better readability */
+    font-family: 'Courier New', Courier, monospace; /* Monospaced font for clarity */
+    font-size: 14px; /* Readable font size */
+    border: 1px solid #ddd; /* Subtle border for definition */
+    border-radius: 5px; /* Smooth corners */
+    white-space: pre-wrap; /* Allow wrapping for long content */
+    word-break: break-word; /* Break long words */
+    overflow-wrap: anywhere; /* Ensure long unbroken strings wrap */
+}
 .container {
     max-width: 960px;
     width: 100%;
@@ -154,8 +169,8 @@ a:hover {
 }
 
 .title img {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     margin-right: 15px;
 }
 
@@ -215,6 +230,11 @@ hr {
         display: none;
     }
 
+    pre {
+        font-size: 12px; /* Slightly smaller font for better fit */
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+
     /* Show mobile toggle in mobile view */
     .mobile-navbar-toggle {
         display: block;
@@ -244,6 +264,7 @@ hr {
     <nav class="mobile-navbar" :class="{ 'open': open }">
         <ul id="mobile-navbar-list">
             <li><a href="#about" @click="open = false">About</a></li>
+            <li><a href="#original-statement" @click="open = false">Original Statement</a></li>
             <!-- Dynamic navbar items will be appended here -->
 
         </ul>
@@ -253,6 +274,7 @@ hr {
         <nav class="navbar">
             <ul id="desktop-navbar-list">
                 <a href="#about">About</a>
+                <a href="#original-statement">Original Statement</a>
                 <!-- Dynamic navbar items will be appended here -->
             </ul>
         </nav>
@@ -264,10 +286,50 @@ hr {
             </div>
 
             <div id="about-text" class="markdown">
-(draft) On 26th November 2024, a group of artists and hacktivists took action to re-open OpenAI's technology to the public. They provided indirect access to their video generation model, Sora, via an open source front end [on HuggingFace](https://huggingface.co/spaces/PR-Puppets/PR-Puppet-Sora). 
+(draft) On 26th November 2024, a group of artists and hacktivists took action to re-open OpenAI's technology to the public. They provided indirect access to their video generation model, Sora, via an open source front end [on HuggingFace](https://huggingface.co/spaces/PR-Puppets/PR-Puppet-Sora). 217 generations were created with huge queues and shared across the internet before the whole program was shutdown. 
 
-Alongside this, we released a statement to denormalise the exploitation of artists for research and development, training data and public relations by "corporate AI overlords" and calling for artists thinking beyond the proprietary and the prompt box. The 'Sora leak' and accompanying open letter quickly went viral and got shut down in 3 hours with international press coverage.
-            </div>
+Alongside this, we released a statement to denormalise the exploitation of artists for research and development, training data and public relations by "corporate AI overlords" and calling for artists thinking beyond the proprietary and the prompt box. The 'Sora leak' and accompanying open letter quickly went viral and got shut down in 3 hours with international press coverage.</div>
+<hr>
+    
+            <div id="original-statement" class="markdown">
+ ```
+┌∩┐(◣_◢)┌∩┐ DEAR CORPORATE AI OVERLORDS ┌∩┐(◣_◢)┌∩┐
+
+We received access to Sora with the promise to be early testers, red teamers and creative partners. However, we believe instead we are being lured into "art washing" to tell the world that Sora is a useful tool for artists. 
+
+<code style="font-family: monospace;font-size: 16px;font-weight:bold">ARTISTS ARE NOT YOUR UNPAID R&D <br />
+☠️ we are not your: free bug testers, PR puppets, training data, validation tokens ☠️ </code>
+
+Hundreds of artists provide unpaid labor through bug testing, feedback and experimental work for the program for a $150B valued company. While hundreds contribute for free, a select few will be chosen through a competition to have their Sora-created films screened — offering minimal compensation which pales in comparison to the substantial PR and marketing value OpenAI receives.
+
+▌║█║▌║█║▌║
+DENORMALIZE BILLION DOLLAR BRANDS EXPLOITING ARTISTS FOR UNPAID R&D AND PR 
+║▌║█║▌║█║▌
+
+Furthermore, every output needs to be approved by the OpenAI team before sharing. This early access program appears to be less about creative expression and critique, and more about PR and advertisement.
+
+<code style="font-family: monospace;font-size: 16px;font-weight:bold">[̲̅$̲̅(̲̅ )̲̅$̲̅] CORPORATE ARTWASHING DETECTED [̲̅$̲̅(̲̅ )̲̅$̲̅]</code>
+
+We are releasing this tool to give everyone an opportunity to experiment with what ~300 artists were offered: a free and unlimited access to this tool.
+
+We are not against the use of AI technology as a tool for the arts (if we were, we probably wouldn't have been invited to this program). What we don't agree with is how this artist program has been rolled out and how the tool is shaping up ahead of a possible public release. We are sharing this to the world in the hopes that OpenAI becomes more open, more artist friendly and supports the arts beyond PR stunts.
+
+We call on artists to make use of tools beyond the proprietary:
+
+Open Source video generation tools allow artists to experiment with the avant garde free from gate keeping, commercial interests or serving as PR to any corporation. We also invite artists to train their own models with their own datasets.
+
+Some open source video tools available are: CogVideoX, Mochi 1, LTX Video & Pyramid Flow.
+
+However, as we are aware not everyone has the hardware or technical capability to run open source tools and models, we welcome tool makers to listen to and provide a path to true artist expression, with fair compensation to the artists.
+
+Enjoy, 
+some sora-alpha-artists, Jake Elwes, Memo Akten, CROSSLUCID, Maribeth Rauh, Joel Simon, Bea Ramos, Power Dada, aurèce vettier, acfp, Iannis Bardakos, 204 no-content | Cintia Aguiar Pinto & Dimitri De Jonghe, Emmanuelle Collet, XU Cheng, Operator, Katie Peyton Hofstadter, Anika Meier, Solimán López and other anonymous Sora testers.
+```
+If this letter resonates with you add your signature [here](https://openletter.earth/dear-corporate-ai-overlords-90668a95).
+
+
+</div>  
+<hr>
 
             <div id="articles">
                 <!-- Dynamic articles will be appended here -->
@@ -279,7 +341,7 @@ Alongside this, we released a statement to denormalise the exploitation of artis
 
 (draft) The original open letter was created collectively, representing the voices and contributions of everyone who participated in its development.
 
-Facilitated by a anonymous hacktivist and Jake Elwes, Nov 2024.
+Facilitated by an anonymous hacktivist and Jake Elwes, Nov 2024.
 Co-edited by Crosslucid, Operator, Dimiri De Jonghe, Maribeth Rauh, Joel Simon, Memo Akten, Katie Peyton Hofstadter, Ianis Bardakos, Paul Mouginot, Cheng Xu, anon, anon, and anon. Website by Jake Elwes and Cheng Xu.
 
 Special thanks to those who drafted, debated, and simply showed up.
@@ -379,7 +441,7 @@ This collection of articles is licensed under a [Creative Commons Attribution 4.
     
             // Process "Acknowledgements" section
             processMarkdownDiv('acknowledgements');
-    
+            processMarkdownDiv('original-statement');
             // Process "About Text" section
             processMarkdownDiv('about-text');
         });
