@@ -285,9 +285,11 @@ hr {
             </div>
 
             <div id="about-text" class="markdown">
-(draft) On 26th November 2024, a group of artists and hacktivists took action to re-open OpenAI's technology to the public. They provided indirect access to their video generation model, Sora, via an open source front end [on HuggingFace](https://huggingface.co/spaces/PR-Puppets/PR-Puppet-Sora). 217 generations were created with huge queues and shared across the internet before the whole program was shutdown. 
+(draft) On 26th November 2024, a group of artists and hacktivists took action to re-open OpenAI's technology to the public. They provided indirect access to Sora, OpenAI’s video generation model, through an open-source front end [on HuggingFace](https://huggingface.co/spaces/PR-Puppets/PR-Puppet-Sora). 
 
-Alongside this, we released a statement to denormalise the exploitation of artists for research and development, training data and public relations by "corporate AI overlords" and calling for artists thinking beyond the proprietary and the prompt box. The 'Sora leak' and accompanying open letter quickly went viral and got shut down in 3 hours with international press coverage.</div>
+At the same time, we released a statement to denormalise the exploitation of artists for research and development, training data and public relations by "corporate AI overlords". We called on artists to think beyond proprietary systems and the limitations of prompting a model mediated by big tech.
+
+The Hugging face page and accompanying open letter quickly went viral. OpenAI shut down the entire program 3 hours later, 217 video generations were created, with huge queues forming and the results shared widely across the internet. The event gained [international press coverage.](https://ground.news/article/openais-sora-appears-to-have-leaked_2e0af0)</div>
 <hr>
     
             <div id="original-statement" class="markdown">
@@ -341,7 +343,7 @@ If this letter resonates with you add your signature [here](https://openletter.e
 (draft) The original open letter was created collectively, representing the voices and contributions of everyone who participated in its development.
 
 Facilitated by an anonymous hacktivist and Jake Elwes, Nov 2024.
-Co-edited by Crosslucid, Operator, Dimiri De Jonghe, Maribeth Rauh, Joel Simon, Memo Akten, Katie Peyton Hofstadter, Ianis Bardakos, Paul Mouginot, Cheng Xu, anon, anon, and anon. Website by Jake Elwes and Cheng Xu.
+Co-edited by Crosslucid, Operator, Dimiri De Jonghe, Maribeth Rauh, Joel Simon, Memo Akten, Katie Peyton Hofstadter, Ianis Bardakos, aurèce vettier, XU Cheng, anon, anon, and anon. Website by Jake Elwes and XU Cheng.
 
 Special thanks to those who drafted, debated, and simply showed up.
 
@@ -364,6 +366,13 @@ This collection of articles is licensed under a [Creative Commons Attribution 4.
         async function loadArticles() {
             try {
                 const files = ['test-anon.json', 'test-jake.json', 'test-maribeth.json', 'test-anon2.json'];
+
+                // Shuffle the files array
+                for (let i = files.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [files[i], files[j]] = [files[j], files[i]];
+                }
+
     
                 const navbarListDesktop = document.getElementById('desktop-navbar-list');
                 const navbarListMobile = document.getElementById('mobile-navbar-list');
