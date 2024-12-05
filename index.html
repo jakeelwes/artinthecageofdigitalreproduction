@@ -362,16 +362,17 @@ This collection of articles is licensed under a [Creative Commons Attribution 4.
 
     <script>
         const jsonFolder = './articles'; 
-        
+    
         async function loadArticles() {
             try {
                 const files = ['test-anon.json', 'test-jake.json', 'test-maribeth.json', 'test-anon2.json'];
-    
+
                 // Shuffle the files array
                 for (let i = files.length - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
                     [files[i], files[j]] = [files[j], files[i]];
                 }
+
     
                 const navbarListDesktop = document.getElementById('desktop-navbar-list');
                 const navbarListMobile = document.getElementById('mobile-navbar-list');
@@ -389,13 +390,12 @@ This collection of articles is licensed under a [Creative Commons Attribution 4.
                     const articleData = await fileResponse.json();
     
                     // Create Navbar Links
-                    const linkHref = `#${articleData.id}`; // Always use #id for navigation
                     const linkDesktop = document.createElement('li');
-                    linkDesktop.innerHTML = `<a href="${linkHref}" data-id="${articleData.id}" data-external-url="${articleData.externalUrl || ''}">${articleData.name}</a>`;
+                    linkDesktop.innerHTML = `<a href="#${articleData.id}">${articleData.name}</a>`;
                     navbarListDesktop.appendChild(linkDesktop);
     
                     const linkMobile = document.createElement('li');
-                    linkMobile.innerHTML = `<a href="${linkHref}" data-id="${articleData.id}" data-external-url="${articleData.externalUrl || ''}" @click="open = false">${articleData.name}</a>`;
+                    linkMobile.innerHTML = `<a href="#${articleData.id}" @click="open = false">${articleData.name}</a>`;
                     navbarListMobile.appendChild(linkMobile);
     
                     // Parse Markdown to HTML
@@ -422,29 +422,6 @@ This collection of articles is licensed under a [Creative Commons Attribution 4.
                 const acknowledgementsMobile = document.createElement('li');
                 acknowledgementsMobile.innerHTML = `<a href="#acknowledgements" @click="open = false">Acknowledgements</a>`;
                 navbarListMobile.appendChild(acknowledgementsMobile);
-    
-                // Attach event listeners to handle navigation after articles are loaded
-                document.querySelectorAll('a[data-id]').forEach(link => {
-                    const id = link.getAttribute('data-id');
-                    const externalUrl = link.getAttribute('data-external-url');
-    
-                    link.addEventListener('click', (event) => {
-                        event.preventDefault();
-    
-                        if (externalUrl) {
-                            // Open external URL in a new tab
-                            window.open(externalUrl, '_blank');
-                        } else {
-                            // Scroll to the element if it's an internal link
-                            const target = document.getElementById(id);
-                            if (target) {
-                                target.scrollIntoView({ behavior: 'smooth' });
-                            } else {
-                                console.error(`Element with ID "${id}" not found.`);
-                            }
-                        }
-                    });
-                });
             } catch (error) {
                 console.error('Error loading articles:', error);
             }
