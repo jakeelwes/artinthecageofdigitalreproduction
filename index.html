@@ -501,6 +501,14 @@ This collection of articles is licensed under a [Creative Commons Attribution 4.
             processMarkdownDiv('original-statement');
             // Process "About Text" section
             processMarkdownDiv('about-text');
+            if (window.location.hash) {                
+                setTimeout(() => {
+                    const targetElement = document.querySelector(window.location.hash);
+                    if (targetElement) {
+                        targetElement.scrollIntoView()
+                    }
+                }, 50)
+            }
         });
     </script>
 </body>
