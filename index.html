@@ -569,6 +569,9 @@ This collection of articles is licensed under a [Creative Commons Attribution 4.
     <script>
 const jsonFolder = './articles'; 
 
+// Create a promise that resolves when articles are loaded
+let articlesLoadedPromise = null;
+
 async function loadArticles() {
     try {
         const files = ["CROSSLUCID.json", "MCSK.json", "anon1.json", "anon2.json", "aurece_vettier.json", "constant_dullaart.json", "federico_bomba.json", "inna_modja.json", "jake_elwes.json", "jianwei_xun.json", "joel_simon.json", "luna_bianchi.json", "maribeth_rauh.json", "wesley_goatley.json", "xu_cheng.json"];
@@ -583,12 +586,13 @@ async function loadArticles() {
         const navbarListMobile = document.getElementById('mobile-navbar-list');
         const articlesContainer = document.getElementById('articles');
 
-        for (const file of files) {
+        // Load all articles
+        await Promise.all(files.map(async (file) => {
             const fileResponse = await fetch(`${jsonFolder}/${file}`);
             
             if (!fileResponse.ok) {
                 console.error(`Failed to load ${file}:`, fileResponse.statusText);
-                continue;
+                return;
             }
 
             const articleData = await fileResponse.json();
@@ -616,7 +620,7 @@ async function loadArticles() {
                 <hr>
             `;
             articlesContainer.appendChild(article);
-        }
+        }));
 
         const acknowledgementsDesktop = document.createElement('li');
         acknowledgementsDesktop.innerHTML = `<a href="#acknowledgements">Acknowledgements</a>`;
@@ -626,10 +630,6 @@ async function loadArticles() {
         acknowledgementsMobile.innerHTML = `<a href="#acknowledgements" @click="open = false">Acknowledgements</a>`;
         navbarListMobile.appendChild(acknowledgementsMobile);
 
-        // After all content is loaded, scroll to hash if present
-        if (window.location.hash) {
-            scrollToHash();
-        }
     } catch (error) {
         console.error('Error loading articles:', error);
     }
@@ -638,17 +638,23 @@ async function loadArticles() {
 function scrollToHash() {
     const hash = window.location.hash;
     if (hash) {
-        const targetElement = document.querySelector(hash);
-        if (targetElement) {
-            // Use requestAnimationFrame to ensure DOM is ready
-            requestAnimationFrame(() => {
+        // Add a small delay to ensure DOM is fully rendered
+        setTimeout(() => {
+            const targetElement = document.querySelector(hash);
+            if (targetElement) {
                 targetElement.scrollIntoView({ behavior: 'smooth' });
-            });
-        }
+            }
+        }, 100);
     }
 }
 
-// Process Markdown sections
+// Initialize articles loading promise
+function initializeArticlesLoading() {
+    articlesLoadedPromise = loadArticles();
+    return articlesLoadedPromise;
+}
+
+// Process Markdown sections and handle initial scroll
 document.addEventListener('DOMContentLoaded', async () => {
     function processMarkdownDiv(divId) {
         const div = document.getElementById(divId);
@@ -659,16 +665,27 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    // Process static markdown sections
     processMarkdownDiv('acknowledgements');
     processMarkdownDiv('original-statement');
     processMarkdownDiv('about-text');
     
-    // Load articles and wait for completion
-    await loadArticles();
+    // Initialize articles loading
+    await initializeArticlesLoading();
+    
+    // Once everything is loaded, scroll to hash if present
+    scrollToHash();
 });
 
-// Handle navigation when hash changes
-window.addEventListener('hashchange', scrollToHash);
+// Handle navigation when hash changes after initial load
+window.addEventListener('hashchange', () => {
+    // If articles are still loading, wait for them to finish before scrolling
+    if (articlesLoadedPromise) {
+        articlesLoadedPromise.then(scrollToHash);
+    } else {
+        scrollToHash();
+    }
+});
     </script>
 </body>
 </html>
