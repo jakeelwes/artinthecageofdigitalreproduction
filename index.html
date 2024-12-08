@@ -525,12 +525,13 @@ This collection of articles is licensed under a [Creative Commons Attribution 4.
                     const articleData = await fileResponse.json();
     
                     // Create Navbar Links
+
                     const linkDesktop = document.createElement('li');
-                    linkDesktop.innerHTML = `<a href="#${articleData.id}">${articleData.name}</a>`;
+                    linkDesktop.innerHTML = `<a href="#${articleData.id}" onclick="gtag('event', 'navigation', { 'event_category': 'Desktop Navbar', 'event_label': '${articleData.name}' });">${articleData.name}</a>`;
                     navbarListDesktop.appendChild(linkDesktop);
-    
+
                     const linkMobile = document.createElement('li');
-                    linkMobile.innerHTML = `<a href="#${articleData.id}" @click="open = false">${articleData.name}</a>`;
+                    linkMobile.innerHTML = `<a href="#${articleData.id}" @click="open = false" onclick="gtag('event', 'navigation', { 'event_category': 'Mobile Navbar', 'event_label': '${articleData.name}' });">${articleData.name}</a>`;
                     navbarListMobile.appendChild(linkMobile);
     
                     // Parse Markdown to HTML
