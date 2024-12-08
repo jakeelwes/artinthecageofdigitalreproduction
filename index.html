@@ -574,7 +574,24 @@ let articlesLoadedPromise = null;
 
 async function loadArticles() {
     try {
-        const files = ["CROSSLUCID.json", "MCSK.json", "anon1.json", "anon2.json", "aurece_vettier.json", "constant_dullaart.json", "federico_bomba.json", "inna_modja.json", "jake_elwes.json", "jianwei_xun.json", "joel_simon.json", "luna_bianchi.json", "maribeth_rauh.json", "wesley_goatley.json", "xu_cheng.json"];
+        const files = [
+            "jake_elwes.json",
+            "CROSSLUCID.json", 
+            "luna_bianchi.json",
+            "jianwei_xun.json",
+            "aurece_vettier.json",
+            "maribeth_rauh.json",
+            "MCSK.json",
+            "constant_dullaart.json", 
+            "federico_bomba.json",
+            "inna_modja.json",
+            "anon1.json",
+            "anon2.json", 
+            "joel_simon.json",
+            "wesley_goatley.json",
+            "xu_cheng.json"
+        ];
+
 
         // Shuffle the files array
         for (let i = files.length - 1; i > 0; i--) {
