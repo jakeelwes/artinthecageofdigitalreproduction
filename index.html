@@ -10,6 +10,79 @@
         <meta name="keywords" content="art, AI, digital reproduction, open-source tools, artist rights, corporate exploitation, ethical AI, video generation">
         <meta name="author" content="Jake Elwes, Crosslucid, Memo Akten, and contributors">
         <meta name="robots" content="index, follow">
+
+
+      <!-- Google Scholar Metadata -->
+      <meta name="citation_title" content="Art in the Cage of Digital Reproduction">
+      <meta name="citation_author" content="Elwes, Jake">
+      <meta name="citation_author" content="CROSSLUCID">
+      <meta name="citation_author" content="aurèce vettier">
+      <meta name="citation_author" content="Maribeth Rauh">
+      <meta name="citation_publication_date" content="2024/11/26">
+      <meta name="citation_online_date" content="2024/11/26">
+      <meta name="citation_abstract" content="A collection of mini-essays & reflections from authors - denormalize billion dollar brands exploiting artists for unpaid R&D and PR.">
+      <meta name="citation_keywords" content="artificial intelligence, digital art, artist rights, corporate exploitation, AI ethics, video generation, Sora, OpenAI">
+      <meta name="citation_public_url" content="https://artinthecageofdigitalreproduction.org">
+      <meta name="citation_fulltext_html_url" content="https://artinthecageofdigitalreproduction.org">
+      <meta name="citation_pdf_url" content="https://artinthecageofdigitalreproduction.org/artinthecageofdigitalreproduction.pdf">
+      <meta name="citation_conference_title" content="Art in the Cage of Digital Reproduction">
+      <meta name="citation_language" content="en">
+      
+      <!-- Dublin Core Metadata -->
+      <meta name="DC.title" content="Art in the Cage of Digital Reproduction">
+      <meta name="DC.creator" content="Jake Elwes, CROSSLUCID, aurèce vettier, Maribeth Rauh et al.">
+      <meta name="DC.subject" content="Artificial Intelligence; Digital Art; Artist Rights">
+      <meta name="DC.description" content="A collection of mini-essays & reflections from authors - denormalize billion dollar brands exploiting artists for unpaid R&D and PR.">
+      <meta name="DC.publisher" content="Art in the Cage Collective">
+      <meta name="DC.date" content="2024-11-26">
+      <meta name="DC.type" content="Text">
+      <meta name="DC.format" content="text/html">
+      <meta name="DC.language" content="en">
+      <meta name="DC.rights" content="Creative Commons Attribution 4.0 International License">
+      
+      <!-- Primary Meta Tags -->
+      <title>Art in the Cage of Digital Reproduction - Exploring Artist Rights and AI</title>
+      <meta name="description" content="A collection of mini-essays & reflections from authors - denormalize billion dollar brands exploiting artists for unpaid R&D and PR.">
+      <meta name="keywords" content="art, AI, digital reproduction, open-source tools, artist rights, corporate exploitation, ethical AI, video generation">
+      <meta name="author" content="Jake Elwes, Crosslucid, aurèce vettier, Maribeth Rauh and contributors">
+      <meta name="robots" content="index, follow">
+      
+      <!-- Schema.org markup for Google Scholar -->
+      <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "ScholarlyArticle",
+        "name": "Art in the Cage of Digital Reproduction",
+        "author": [
+          {
+            "@type": "Person",
+            "name": "Jake Elwes"
+          },
+          {
+            "@type": "Person",
+            "name": "aurèce vettier"
+          },
+          {
+            "@type": "Person",
+            "name": "Maribeth Rauh"
+          },
+          {
+            "@type": "Person",
+            "name": "CROSSLUCID"
+          }
+        ],
+        "datePublished": "2024-11-26",
+        "description": "A collection of mini-essays & reflections from authors - denormalize billion dollar brands exploiting artists for unpaid R&D and PR.",
+        "keywords": "artificial intelligence, digital art, artist rights, corporate exploitation, AI ethics, video generation",
+        "license": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Art in the Cage of Digital Reproduction"
+        }
+      }
+      </script>
+
+
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
         <meta property="og:title" content="Art in the Cage of Digital Reproduction">
@@ -494,109 +567,108 @@ This collection of articles is licensed under a [Creative Commons Attribution 4.
     </div>
 
     <script>
-        const jsonFolder = './articles'; 
-    
-        async function loadArticles() {
-            try {
-                const files = ["CROSSLUCID.json", "MCSK.json", "anon1.json", "anon2.json", "aurece_vettier.json", "constant_dullaart.json", "federico_bomba.json", "inna_modja.json", "jake_elwes.json", "jianwei_xun.json", "joel_simon.json", "luna_bianchi.json", "maribeth_rauh.json", "wesley_goatley.json", "xu_cheng.json"];
+const jsonFolder = './articles'; 
 
-                // Shuffle the files array
-                for (let i = files.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [files[i], files[j]] = [files[j], files[i]];
-                }
+async function loadArticles() {
+    try {
+        const files = ["CROSSLUCID.json", "MCSK.json", "anon1.json", "anon2.json", "aurece_vettier.json", "constant_dullaart.json", "federico_bomba.json", "inna_modja.json", "jake_elwes.json", "jianwei_xun.json", "joel_simon.json", "luna_bianchi.json", "maribeth_rauh.json", "wesley_goatley.json", "xu_cheng.json"];
 
-    
-                const navbarListDesktop = document.getElementById('desktop-navbar-list');
-                const navbarListMobile = document.getElementById('mobile-navbar-list');
-                const articlesContainer = document.getElementById('articles');
-    
-                for (const file of files) {
-                    const fileResponse = await fetch(`${jsonFolder}/${file}`);
-                    
-                    // Check if the file was fetched successfully
-                    if (!fileResponse.ok) {
-                        console.error(`Failed to load ${file}:`, fileResponse.statusText);
-                        continue;
-                    }
-    
-                    const articleData = await fileResponse.json();
-    
-                    // Create Navbar Links
-
-                    const linkDesktop = document.createElement('li');
-                    linkDesktop.innerHTML = `<a href="#${articleData.id}" onclick="gtag('event', 'navigation', { 'event_category': 'Desktop Navbar', 'event_label': '${articleData.name}' });">${articleData.name}</a>`;
-                    navbarListDesktop.appendChild(linkDesktop);
-
-                    const linkMobile = document.createElement('li');
-                    linkMobile.innerHTML = `<a href="#${articleData.id}" @click="open = false" onclick="gtag('event', 'navigation', { 'event_category': 'Mobile Navbar', 'event_label': '${articleData.name}' });">${articleData.name}</a>`;
-                    navbarListMobile.appendChild(linkMobile);
-    
-                    // Parse Markdown to HTML
-                    const markdownContent = marked.parse(articleData.content);    
-                    const markdownBio = marked.parse(articleData.bio);    
-                    // Create Article Content
-                    const article = document.createElement('article');
-                    article.id = articleData.id;
-                    article.innerHTML = `
-                        <img class="banner" src="${articleData.image.path}"></img>
-                        <div class="image-caption">${articleData.image.caption}</div>
-                        <h2>${articleData.name}</h2>
-                        <h3>${articleData.occupation}</h3>
-                        <div class="markdown">${markdownContent}</div>
-                        <div class="markdown" style="font-style: italic;">${markdownBio}</div>
-                        <hr>
-                    `;
-                    articlesContainer.appendChild(article);
-                }
-    
-                // Add "Acknowledgements" link to the navbar after JSON-based items
-                const acknowledgementsDesktop = document.createElement('li');
-                acknowledgementsDesktop.innerHTML = `<a href="#acknowledgements">Acknowledgements</a>`;
-                navbarListDesktop.appendChild(acknowledgementsDesktop);
-    
-                const acknowledgementsMobile = document.createElement('li');
-                acknowledgementsMobile.innerHTML = `<a href="#acknowledgements" @click="open = false">Acknowledgements</a>`;
-                navbarListMobile.appendChild(acknowledgementsMobile);
-            } catch (error) {
-                console.error('Error loading articles:', error);
-            }
+        // Shuffle the files array
+        for (let i = files.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [files[i], files[j]] = [files[j], files[i]];
         }
-    
-        // New code to process Markdown sections
-        document.addEventListener('DOMContentLoaded', () => {
-            // Load dynamic articles
-            loadArticles();
-    
-            // Function to process a specific Markdown div
-            function processMarkdownDiv(divId) {
-                const div = document.getElementById(divId);
-                if (div) {
-                    // Extract raw Markdown content
-                    const rawMarkdown = div.textContent;
-    
-                    // Convert Markdown to HTML using marked
-                    const parsedHTML = marked.parse(rawMarkdown);
-    
-                    // Replace the content of the div with parsed HTML
-                    div.innerHTML = parsedHTML;
-                }
+
+        const navbarListDesktop = document.getElementById('desktop-navbar-list');
+        const navbarListMobile = document.getElementById('mobile-navbar-list');
+        const articlesContainer = document.getElementById('articles');
+
+        for (const file of files) {
+            const fileResponse = await fetch(`${jsonFolder}/${file}`);
+            
+            if (!fileResponse.ok) {
+                console.error(`Failed to load ${file}:`, fileResponse.statusText);
+                continue;
             }
+
+            const articleData = await fileResponse.json();
+
+            const linkDesktop = document.createElement('li');
+            linkDesktop.innerHTML = `<a href="#${articleData.id}" onclick="gtag('event', 'navigation', { 'event_category': 'Desktop Navbar', 'event_label': '${articleData.name}' });">${articleData.name}</a>`;
+            navbarListDesktop.appendChild(linkDesktop);
+
+            const linkMobile = document.createElement('li');
+            linkMobile.innerHTML = `<a href="#${articleData.id}" @click="open = false" onclick="gtag('event', 'navigation', { 'event_category': 'Mobile Navbar', 'event_label': '${articleData.name}' });">${articleData.name}</a>`;
+            navbarListMobile.appendChild(linkMobile);
+
+            const markdownContent = marked.parse(articleData.content);    
+            const markdownBio = marked.parse(articleData.bio);    
+            
+            const article = document.createElement('article');
+            article.id = articleData.id;
+            article.innerHTML = `
+                <img class="banner" src="${articleData.image.path}"></img>
+                <div class="image-caption">${articleData.image.caption}</div>
+                <h2>${articleData.name}</h2>
+                <h3>${articleData.occupation}</h3>
+                <div class="markdown">${markdownContent}</div>
+                <div class="markdown" style="font-style: italic;">${markdownBio}</div>
+                <hr>
+            `;
+            articlesContainer.appendChild(article);
+        }
+
+        const acknowledgementsDesktop = document.createElement('li');
+        acknowledgementsDesktop.innerHTML = `<a href="#acknowledgements">Acknowledgements</a>`;
+        navbarListDesktop.appendChild(acknowledgementsDesktop);
+
+        const acknowledgementsMobile = document.createElement('li');
+        acknowledgementsMobile.innerHTML = `<a href="#acknowledgements" @click="open = false">Acknowledgements</a>`;
+        navbarListMobile.appendChild(acknowledgementsMobile);
+
+        // After all content is loaded, scroll to hash if present
+        if (window.location.hash) {
+            scrollToHash();
+        }
+    } catch (error) {
+        console.error('Error loading articles:', error);
+    }
+}
+
+function scrollToHash() {
+    const hash = window.location.hash;
+    if (hash) {
+        const targetElement = document.querySelector(hash);
+        if (targetElement) {
+            // Use requestAnimationFrame to ensure DOM is ready
+            requestAnimationFrame(() => {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+    }
+}
+
+// Process Markdown sections
+document.addEventListener('DOMContentLoaded', async () => {
+    function processMarkdownDiv(divId) {
+        const div = document.getElementById(divId);
+        if (div) {
+            const rawMarkdown = div.textContent;
+            const parsedHTML = marked.parse(rawMarkdown);
+            div.innerHTML = parsedHTML;
+        }
+    }
+
+    processMarkdownDiv('acknowledgements');
+    processMarkdownDiv('original-statement');
+    processMarkdownDiv('about-text');
     
-            // Process "Acknowledgements" section
-            processMarkdownDiv('acknowledgements');
-            processMarkdownDiv('original-statement');
-            // Process "About Text" section
-            processMarkdownDiv('about-text');
-            if (window.location.hash) {                
-                setTimeout(() => {
-                    const targetElement = document.querySelector(window.location.hash);
-                    if (targetElement) {
-                        targetElement.scrollIntoView()
-                    }
-                }, 50)
-            }
-        });
+    // Load articles and wait for completion
+    await loadArticles();
+});
+
+// Handle navigation when hash changes
+window.addEventListener('hashchange', scrollToHash);
     </script>
 </body>
 </html>
