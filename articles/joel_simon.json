@@ -1,0 +1,14 @@
+{
+  "id": "joel_simon",
+  "name": "Joel Simon",
+  "occupation": "",
+  "date": "2024-12-05",
+  "externalUrl": "",
+  "image": {
+    "path": "",
+    "caption": ""
+  },
+  "content": "Since 2018, I have been fascinated by the potential of generative technologies to enhance creativity, sparked by my work with machine learning as both a toolmaker and researcher. My first project, Ganbreeder (later renamed Artbreeder), demonstrated the power of GANs as an image-making methodology, bringing their potential to the public in 2018. While I was initially enthusiastic about the possibilities for augmenting human expression, my optimism has waned. Today, the most advanced tools remain locked behind APIs with limited, prompt-based interfaces and strict moderation, stifling their creative potential.\n\nHaving run my own studio —creating tools and testing them with new users—I empathize with the challenges of operating such platforms and commend efforts by companies like OpenAI to engage with artists. However, I believe these large corporations fundamentally misunderstand the goals and needs of artists.\n\nArtists must have the freedom to experiment, break, and even misuse their tools without facing moderation or the self-censorship that comes with privileged access.\n\nOpen source methods are ideal but not suitable for everyone. Two examples from Artbreeder illustrate how this freedom can be facilitated on hosted platforms. First, all images had their positions in latent space fully accessible, ensuring an open system. Second, we allowed users to modify the UI with scripts to enable arbitrary unclamped inputs into the latent space. This experimentation revealed unexpected insights, such as the value of negative class labels provided by users. In essence, a degree of \"breakability\" is essential for a truly creative tool.\n\nWhile corporations may require some guardrails, it is crucial to recognize that censorship—however well-intentioned—is fundamentally at odds with the expressive power and freedom that artists need.",
+  "bio": ""
+}
+
