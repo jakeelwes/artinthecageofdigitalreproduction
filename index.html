@@ -70,6 +70,27 @@ a:hover {
     position: sticky;
     top: 0;
     height: max-content;
+    height: 100vh; /* Add this */
+    overflow-y: auto; /* Add this */
+    scrollbar-width: thin; /* Add this */
+    scrollbar-color: #888 #f1f1f1; /* Add this */
+}
+
+.navbar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.navbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.navbar::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+.navbar::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 .navbar h2 {
@@ -124,6 +145,8 @@ a:hover {
     z-index: 999;
     transform: translateY(-100%);
     transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .mobile-navbar.open {
@@ -133,6 +156,10 @@ a:hover {
 .mobile-navbar ul {
     list-style-type: none;
     padding: 0;
+    max-height: 85vh; /* Add this */
+    overflow-y: auto; /* Add this */
+    scrollbar-width: thin; /* Add this */
+    scrollbar-color: #888 #f1f1f1; /* Add this */
 }
 
 .mobile-navbar li {
@@ -149,6 +176,23 @@ a:hover {
 
 .mobile-navbar a:hover {
     background: #f4f4f4;
+}
+
+.mobile-navbar ul::-webkit-scrollbar {
+    width: 5px;
+}
+
+.mobile-navbar ul::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.mobile-navbar ul::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+.mobile-navbar ul::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 /* White Strip Menu Bar for Mobile */
@@ -249,13 +293,15 @@ hr {
 
     .mobile-navbar {
         top: 40px; /* Adjust for white strip */
-        transform: translateY(-100%); /* Initially hidden */
+        /* transform: translateY(-100%); */
         text-align: center;
+        height: calc(100%);
 
     }
 
     .mobile-navbar.open {
         top: 0px;
+         /* top: 40px; */
         transform: translateY(0); /* Slide down when open */
     }
 
@@ -287,6 +333,7 @@ hr {
     .navbar {
         display: block; /* Show desktop navbar */
         text-align: right;
+        width: fit-content;
     }
 
     .mobile-navbar {
@@ -414,7 +461,7 @@ This collection of articles is licensed under a [Creative Commons Attribution 4.
     
         async function loadArticles() {
             try {
-                const files = ["CROSSLUCID.json", "MCSK.json", "anon1.json", "anon2.json", "aurèce_vettier.json", "constant_dullaart.json", "federico_bomba.json", "inna_modja.json", "jake_elwes.json", "jianwei_xun.json", "joel_simon.json", "luna_bianchi.json", "maribeth_rauh.json", "wesley_goatley.json"];
+                const files = ["CROSSLUCID.json", "MCSK.json", "anon1.json", "anon2.json", "aurece_vettier.json", "constant_dullaart.json", "federico_bomba.json", "inna_modja.json", "jake_elwes.json", "jianwei_xun.json", "joel_simon.json", "luna_bianchi.json", "maribeth_rauh.json", "wesley_goatley.json"];
 
                 // Shuffle the files array
                 for (let i = files.length - 1; i > 0; i--) {
@@ -449,6 +496,7 @@ This collection of articles is licensed under a [Creative Commons Attribution 4.
     
                     // Parse Markdown to HTML
                     const markdownContent = marked.parse(articleData.content);    
+                    const markdownBio = marked.parse(articleData.bio);    
                     // Create Article Content
                     const article = document.createElement('article');
                     article.id = articleData.id;
@@ -458,6 +506,7 @@ This collection of articles is licensed under a [Creative Commons Attribution 4.
                         <h2>${articleData.name}</h2>
                         <h3>${articleData.occupation}</h3>
                         <div class="markdown">${markdownContent}</div>
+                        <div class="markdown" style="font-style: italic;">${markdownBio}</div>
                         <hr>
                     `;
                     articlesContainer.appendChild(article);
