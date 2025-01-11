@@ -123,8 +123,6 @@
             gtag('config', 'G-1BCGN4SC7B');
         </script>
                 <style>
-
-/* General Styles */
 html {
     scroll-behavior: smooth;
 }
@@ -143,6 +141,7 @@ body {
     display: flex;
     justify-content: center;
     padding: 0 20px;
+    font-size: 16px; /* Added base font size */
 }
 
 pre {
@@ -167,6 +166,13 @@ pre {
     gap: 20px;
 }
 
+.content {
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+    max-width: 60ch; /* Added max line length */
+}
+
 a {
     color: rgb(157, 89, 163);
     text-decoration: none;
@@ -174,6 +180,19 @@ a {
 
 a:hover {
     color: rgb(65, 0, 71);
+}
+
+/* Updated heading styles */
+h2 {
+    font-family: 'Cormorant', serif;
+}
+
+h3 {
+    font-family: 'Cormorant', serif;
+    font-weight: normal;
+    font-style: italic;
+    color: #555;
+    margin-bottom: 20px;
 }
 
 /* Navbar Styles */
@@ -184,10 +203,10 @@ a:hover {
     position: sticky;
     top: 0;
     height: max-content;
-    height: 100vh; /* Add this */
-    overflow-y: auto; /* Add this */
-    scrollbar-width: thin; /* Add this */
-    scrollbar-color: #888 #f1f1f1; /* Add this */
+    height: 100vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
 }
 
 .navbar::-webkit-scrollbar {
@@ -216,6 +235,7 @@ a:hover {
 
 .navbar a {
     color: #888;
+    font-size: 0.9rem;
     text-decoration: none;
     display: block;
     padding: 10px;
@@ -233,7 +253,7 @@ a:hover {
 
 /* Mobile Navbar Styles */
 .mobile-navbar-toggle {
-    display: none; /* Hidden by default for desktop */
+    display: none;
     font-size: 24px;
     background: none;
     border: none;
@@ -270,10 +290,10 @@ a:hover {
 .mobile-navbar ul {
     list-style-type: none;
     padding: 0;
-    max-height: 85vh; /* Add this */
-    overflow-y: auto; /* Add this */
-    scrollbar-width: thin; /* Add this */
-    scrollbar-color: #888 #f1f1f1; /* Add this */
+    max-height: 85vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
 }
 
 .mobile-navbar li {
@@ -282,6 +302,7 @@ a:hover {
 
 .mobile-navbar a {
     color: #333;
+    font-size: 0.875rem;
     text-decoration: none;
     padding: 10px;
     display: block;
@@ -318,7 +339,7 @@ a:hover {
     width: 100%;
     height: 40px;
     background-color: #fff;
-    z-index: 1001; /* Above the navbar */
+    z-index: 1001;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -331,18 +352,11 @@ a:hover {
 }
 
 /* Content Styles */
-.content {
-    flex: 1;
-    background: #fff;
-    padding: 20px;
-}
-
 .title {
     display: flex;
     align-items: center;
     margin-bottom: 50px;
     padding-top: 20px;
-
 }
 
 .title img {
@@ -383,7 +397,7 @@ article h3 {
     font-size: 1em;
     font-style: italic;
     color: #555;
-    margin-bottom: 20px;
+    margin-bottom: 2.5em;
 }
 
 .markdown {
@@ -401,8 +415,12 @@ hr {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
+    body {
+        font-size: 15px; /* Reduced font size for mobile */
+    }
+
     .navbar {
-        display: none; /* Hide desktop navbar */
+        display: none;
     }
     
     .hide-on-mobile {
@@ -410,25 +428,22 @@ hr {
     }
 
     .mobile-navbar {
-        top: 40px; /* Adjust for white strip */
-        /* transform: translateY(-100%); */
+        top: 40px;
         text-align: center;
         height: calc(100vh - 40px);
-
     }
 
     .mobile-navbar.open {
-        /* top: 0px; */
-         top: 40px;
-        transform: translateY(0); /* Slide down when open */
+        top: 40px;
+        transform: translateY(0);
     }
 
     .mobile-navbar-toggle {
-        display: block; /* Show the toggle button on mobile */
+        display: block;
     }
 
     .mobile-strip {
-        display: block; /* Show the white strip */
+        display: block;
     }
 
     .container {
@@ -448,25 +463,28 @@ hr {
 }
 
 @media (min-width: 769px) {
+    body {
+        font-size: 18px; /* Increased font size for larger screens */
+    }
+
     .navbar {
-        display: block; /* Show desktop navbar */
+        display: block;
         text-align: right;
         width: fit-content;
     }
 
     .mobile-navbar {
-        display: none; /* Hide mobile navbar on desktop */
+        display: none;
     }
 
     .mobile-navbar-toggle {
-        display: none; /* Ensure it remains hidden on desktop */
+        display: none;
     }
 
     .mobile-strip {
-        display: none; /* Hide the white strip */
+        display: none;
     }
 }
-
     </style>
 </head>
 <body x-data="{ open: false }" id="about">
