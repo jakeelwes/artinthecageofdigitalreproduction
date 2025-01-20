@@ -122,370 +122,7 @@
             gtag('js', new Date());
             gtag('config', 'G-1BCGN4SC7B');
         </script>
-                <style>
-html {
-    scroll-behavior: smooth;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'DM Sans', sans-serif;
-    background: #fff;
-    color: #444;
-    line-height: 1.5;
-    display: flex;
-    justify-content: center;
-    padding: 0 20px;
-    font-size: 16px; /* Added base font size */
-}
-
-pre {
-    max-width: 100%;
-    overflow-x: auto;
-    background: #f6f4f5;
-    margin: 20px 0;
-    padding: 15px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    white-space: pre-wrap;
-    word-break: break-word;
-    overflow-wrap: anywhere;
-}
-
-.container {
-    max-width: 960px;
-    width: 100%;
-    display: flex;
-    gap: 20px;
-}
-
-.content {
-    flex: 1;
-    background: #fff;
-    padding: 20px;
-    max-width: 60ch; /* Added max line length */
-}
-
-a {
-    color: rgb(157, 89, 163);
-    text-decoration: none;
-}
-
-a:hover {
-    color: rgb(65, 0, 71);
-}
-
-/* Updated heading styles */
-h2 {
-    font-family: 'Cormorant', serif;
-}
-
-h3 {
-    font-family: 'Cormorant', serif;
-    font-weight: normal;
-    font-style: italic;
-    color: #555;
-    margin-bottom: 20px;
-}
-
-/* Navbar Styles */
-.navbar {
-    width: 200px;
-    background: #fff;
-    padding: 20px;
-    position: sticky;
-    top: 0;
-    height: max-content;
-    height: 100vh;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: #888 #f1f1f1;
-}
-
-.navbar::-webkit-scrollbar {
-    width: 5px;
-}
-
-.navbar::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-.navbar::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 5px;
-}
-
-.navbar::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
-
-.navbar h2 {
-    font-family: 'Cormorant', serif;
-    font-size: 24px;
-    margin-top: 20px;
-    text-align: center;
-}
-
-.navbar a {
-    color: #888;
-    font-size: 0.9rem;
-    text-decoration: none;
-    display: block;
-    padding: 10px;
-    margin-bottom: 5px;
-    transition: background 0.3s ease;
-}
-
-.navbar a:hover {
-    color: #333;
-}
-
-.navbar li {
-    list-style-type: none;
-}
-
-/* Mobile Navbar Styles */
-.mobile-navbar-toggle {
-    display: none;
-    font-size: 24px;
-    background: none;
-    border: none;
-    color: #333;
-    cursor: pointer;
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    z-index: 1004;
-}
-
-.mobile-navbar-toggle i {
-    transition: all 0.3s ease;
-}
-
-.mobile-navbar {
-    position: fixed;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    z-index: 999;
-    transform: translateY(-100%);
-    transition: transform 0.3s ease-in-out;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-.mobile-navbar.open {
-    transform: translateY(0);
-}
-
-.mobile-navbar ul {
-    list-style-type: none;
-    padding: 0;
-    max-height: 85vh;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: #888 #f1f1f1;
-}
-
-.mobile-navbar li {
-    margin-bottom: 15px;
-}
-
-.mobile-navbar a {
-    color: #333;
-    font-size: 0.875rem;
-    text-decoration: none;
-    padding: 10px;
-    display: block;
-    transition: background 0.3s ease;
-}
-
-.mobile-navbar a:hover {
-    background: #f4f4f4;
-}
-
-.mobile-navbar ul::-webkit-scrollbar {
-    width: 5px;
-}
-
-.mobile-navbar ul::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-.mobile-navbar ul::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 5px;
-}
-
-.mobile-navbar ul::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
-
-/* White Strip Menu Bar for Mobile */
-.mobile-strip {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 40px;
-    background-color: #fff;
-    z-index: 1001;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.mobile-strip p {
-    font-size: 14px;
-    color: #444;
-    text-align: center;
-    line-height: 40px;
-    margin: 0;
-}
-
-/* Content Styles */
-.title {
-    display: flex;
-    align-items: center;
-    margin-bottom: 50px;
-    padding-top: 20px;
-}
-
-.title img {
-    width: 120px;
-    height: 120px;
-    margin-right: 15px;
-}
-
-.title h1 {
-    font-family: 'Cormorant', serif;
-    font-size: 28px;
-}
-
-.banner {
-    width: 100%;
-    height: auto;
-}
-
-.image-caption {
-    font-size: 0.6em;
-    color: #888;
-    margin-bottom: 10px;
-    text-align: right;
-}
-
-article {
-    margin-bottom: 30px;
-    background: #fff;
-    text-align: left;
-}
-
-article h2 {
-    margin-bottom: 5px;
-}
-
-article h3 {
-    font-weight: normal;
-    font-size: 1em;
-    font-style: italic;
-    color: #555;
-    margin-bottom: 2.5em;
-}
-
-.markdown {
-    background: #fff;
-    white-space: pre-wrap;
-    font-family: 'DM Sans', sans-serif;
-}
-
-hr {
-    border: 0;
-    height: 1px;
-    background: #ddd;
-    margin: 30px 0;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    body {
-        font-size: 15px; /* Reduced font size for mobile */
-    }
-
-    .navbar {
-        display: none;
-    }
-    
-    .hide-on-mobile {
-        display: none;
-    }
-
-    .mobile-navbar {
-        top: 40px;
-        text-align: center;
-        height: calc(100vh - 40px);
-    }
-
-    .mobile-navbar.open {
-        top: 40px;
-        transform: translateY(0);
-    }
-
-    .mobile-navbar-toggle {
-        display: block;
-    }
-
-    .mobile-strip {
-        display: block;
-    }
-
-    .container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .banner {
-        width: 100%;
-        height: auto;
-    }
-
-    pre {
-        font-size: 12px;
-        padding: 10px;
-    }
-}
-
-@media (min-width: 769px) {
-    body {
-        font-size: 18px; /* Increased font size for larger screens */
-    }
-
-    .navbar {
-        display: block;
-        text-align: right;
-        width: fit-content;
-    }
-
-    .mobile-navbar {
-        display: none;
-    }
-
-    .mobile-navbar-toggle {
-        display: none;
-    }
-
-    .mobile-strip {
-        display: none;
-    }
-}
-    </style>
+          <link rel="stylesheet" href="styles.css">
 </head>
 <body x-data="{ open: false }" id="about">
     <button class="mobile-navbar-toggle" @click="open = !open">
@@ -513,8 +150,14 @@ hr {
         <div class="content">
             <div class="title">
                 <img src="whitebox.png" alt="Art in the Cage of Digital Reproduction logo" width="120" height="120">
- <h1 id="page-title">Art in the Cage of <span class="hide-on-mobile"><br /></span>Digital Reproduction</h1>
+                <div class="glitch-container">
+                <h1 class="glitch-text">Art in the Cage of <span class="hide-on-mobile"><br /></span>Digital Reproduction</h1>
+                <h1 class="glitch-text stroke stroke1">Art in the Cage of <span class="hide-on-mobile"><br /></span>Digital Reproduction</h1>
+                <h1 class="glitch-text stroke stroke2">Art in the Cage of <span class="hide-on-mobile"><br /></span>Digital Reproduction</h1>
+
             </div>
+            </div>
+            
 
             <div id="about-text" class="markdown">
 
@@ -739,6 +382,43 @@ window.addEventListener('hashchange', () => {
         scrollToHash();
     }
 });
+    </script>
+
+    <script>
+window.onload = function () {
+  const stroke1 = document.querySelector('.stroke1');
+  const stroke2 = document.querySelector('.stroke2');
+
+  function glitchEffect1() {
+    const randomX1 = Math.random() * 200 - 50;  // Random X position between -50px and 50px
+    const randomY1 = Math.random() * 10 - 5;    // Random Y position between -5px and 5px
+
+    // Occasionally apply x-direction stretch (1 in 5 chance)
+    const scaleX1 = Math.random() < 0.2 ? Math.random() * 1.5 + 0.5 : 1;
+
+    // Apply transformations with scaling
+    stroke1.style.transform = `translate(${randomX1}px, ${randomY1}px) scaleX(${scaleX1})`;
+
+    // Change speed randomly between 100ms and 400ms for next update
+    const randomSpeed1 = Math.random() * 200 + 50;  // Random interval between 50ms and 250ms
+    setTimeout(glitchEffect1, randomSpeed1);
+  }
+
+  function glitchEffect2() {
+    const randomX2 = Math.random() * 80 - 20;  // Random X position between -20px and 20px
+    const randomY2 = Math.random() * 8 - 4;    // Random Y position between -4px and 4px
+
+    // Apply transformations with scaling
+    stroke2.style.transform = `translate(${randomX2}px, ${randomY2}px)`;
+
+    // Change speed randomly between 100ms and 400ms for next update
+    const randomSpeed2 = Math.random() * 200 + 50;  // Random interval between 50ms and 250ms
+    setTimeout(glitchEffect2, randomSpeed2);
+  }
+
+  glitchEffect1();  // Start glitch effect for stroke1
+  glitchEffect2();  // Start glitch effect for stroke2
+};
     </script>
 </body>
 </html>
